@@ -1,0 +1,17 @@
+# Base application config; import external env.yaml
+spring:
+  application:
+    name: product
+  config:
+    import: optional:file:./env.yaml
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    path: /swagger-ui.html
+  packagesToScan:
+    - com.example.product.controller
