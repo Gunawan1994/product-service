@@ -1,14 +1,22 @@
-# Use an official OpenJDK runtime as a parent image
-FROM openjdk:17-jdk-slim
+# ===== Build stage =====
+FROM eclipse-temurin:21-jdk AS builder
+WORKDIR /build
 
-# Set the working directory
+COPY mvnw .
+COPY .mvn .mvn
+COPY pom.xml .
+
+RUN chmod +x mvnw
+RUN ./mvnw -v
+
+COPY src src
+RUN ./mvnw clean package -DskipTests
+
+# ===== Runtime stage =====
+FROM eclipse-temurin:21-jre
 WORKDIR /app
 
-# Copy the built jar file
-COPY target/*.jar app.jar
+COPY --from=builder /build/target/*.jar app.jar
 
-# Expose port 8080
-EXPOSE 8080
-
-# Run the jar file
+EXPOSE 8000
 ENTRYPOINT ["java", "-jar", "app.jar"]
