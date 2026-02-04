@@ -28,7 +28,7 @@ Prerequisites: Docker Desktop
 docker compose up --build -d
 ```
 - API base: http://localhost:8000/v1/api
-- Swagger UI: http://localhost:8000/swagger-ui.html
+- Swagger UI: http://localhost:8000/v1/api/swagger-ui/index.html
 
 Compose details: see [docker-compose.yml](docker-compose.yml)
 - `db`: PostgreSQL 16 with persistent volume (`db-data`) and healthcheck
