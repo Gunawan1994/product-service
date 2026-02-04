@@ -3,6 +3,7 @@ package com.example.product.dto;
 import jakarta.validation.constraints.NotBlank;
 
 public class CategoryRequest {
+    @NotBlank
     private String name;
 
     public String getName() { return name; }

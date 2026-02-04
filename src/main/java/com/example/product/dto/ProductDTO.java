@@ -6,8 +6,14 @@ import jakarta.validation.constraints.Positive;
 
 public class ProductDTO {
     private String code;
+
+    @NotBlank
     private String name;
+    
+    @NotNull
+    @Positive
     private Double price;
+
     private Long categoryId;
 
     public String getCode() { return code; }
